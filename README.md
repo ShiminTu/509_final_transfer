@@ -6,4 +6,6 @@ This repo is only for file transfer and backup for the final project of MUSA 509
  - Sisun Cheng
  - Shimin Tu
 
-## Data
+## Quick links
+
+GCP (https://console.cloud.google.com/home/dashboard?project=musa-509-final&authuser=1)
