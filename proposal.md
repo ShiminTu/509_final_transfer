@@ -26,7 +26,7 @@ We choose indicators from three dimensions, respectively safety, transportation,
        
        [Metro stations](https://data.cityofchicago.org/Transportation/Metra-Stations/nqm8-q2ym) (Size: 247 rows, 24 columns)
 
- - 	 **[Grocery data](https://data.cityofchicago.org/Health-Human-Services/Grocery-Store-Status-Map/rish-pa6g)** -- Chicago data portal
+ - 	 **[Grocery data](https://data.cityofchicago.org/Community-Economic-Development/Grocery-Stores-2013/53t8-wyrc)** -- Chicago data portal
 
        Size: 265 rows, 6 columns.
        
