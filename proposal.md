@@ -22,7 +22,7 @@ We choose indicators from three dimensions, respectively safety, transportation,
 
        We currently have access to this data
 
-       [Bus stops](https://data.cityofchicago.org/Transportation/CTA-Bus-Stops-Shapefile/pxug-u72f) (Size: 10833 rows, 14 columns)
+       [Bus stops](https://data.cityofchicago.org/Transportation/CTA-Bus-Stops/hvnx-qtky) (Size: 10833 rows, 14 columns)
        
        [Metro stations](https://data.cityofchicago.org/Transportation/Metra-Stations/nqm8-q2ym) (Size: 247 rows, 24 columns)
 
