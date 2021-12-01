@@ -13,7 +13,7 @@ client = bigquery.Client()
 
 job_config = bigquery.LoadJobConfig(
     schema=[
-        bigquery.SchemaField("the_geom", "STRING"),
+        bigquery.SchemaField("the_geom", bigquery.enums.SqlTypeNames.GEOGRAPHY),
         bigquery.SchemaField("pri_neigh", "STRING"),
         bigquery.SchemaField("sec_neigh", "STRING"),
         bigquery.SchemaField("shape_area", "STRING"),
@@ -25,7 +25,7 @@ job_config = bigquery.LoadJobConfig(
 )
 
 bucket_name = os.environ['PIPELINE_DATA_BUCKET']
-blob_name = f'neighborhood_{dt.date.today()}.csv'
+blob_name = 'neighborhood_2021-11-30.csv'
 uri = 'gs://%s/%s' % (bucket_name, blob_name)
 
 table_id = f'musa-509-final.justtest.neighborhood_{dt.date.today()}'
