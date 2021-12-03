@@ -1,0 +1,115 @@
+<html>
+<head>
+  <title>Philadelphia Population Report</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+
+  <style>
+    body {
+      font-family: sans;
+      display: grid;
+      min-height: 100vh;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr 1fr;
+      grid-template-areas:
+        "header header"
+        "map list"
+        "map chart1"
+        "map chart2";
+      column-gap: 1rem;
+      row-gap: 1rem;
+    }
+    h1 {
+      grid-area: header;
+    }
+    #res_map {
+      grid-area: map;
+      height: 100%;
+    }
+    #densitylist {
+      grid-area: list;
+    }
+    #sexchart {
+      grid-area: chart1;
+    }
+    #racechart {
+      grid-area: chart2;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Chicago Neighborhood Report</h1>
+
+  <div id="res_map"></div>
+
+  <div id="densitylist"></div>
+
+  <div id="sexchart"></div>
+
+  <div id="racechart"></div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.min.js"
+   integrity="sha512-FHsFVKQ/T1KWJDGSbrUhTJyS1ph3eRrxI228ND0EGaEp6v4a/vGwPWd3Dtd/+9cI7ccofZvl/wulICEurHN1pg=="
+   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+  <script>
+    /*
+
+        MAP OF POP. DENSITY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    */
+    var initialCenter = [41.854, -87.673];  // <-- Latitude, Longitude
+    var initialZoom = 11;
+    var res_map = L.map('res_map', {
+      zoomSnap: 0,
+      zoomDelta: 0.25
+    }).setView(initialCenter, initialZoom);
+
+    var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
+    	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    	subdomains: 'abcd',
+    	minZoom: 0,
+    	maxZoom: 20,
+    	ext: 'png'
+    });
+    baseLayer.addTo(res_map);
+
+    var neigh_mapdata = {{ neigh_mapdata }};
+    var neighLayer = L.geoJSON(neigh_mapdata, {
+      style: (feature) => {
+        return {
+          fillColor: 'pink',
+          weight: 1,
+          color: 'black',
+          fillOpacity: 0.9
+        }
+      }
+    });
+    neighLayer.addTo(res_map);
+
+    var res_mapdata = {{ res_mapdata }};
+    var dataLayer = L.geoJSON(res_mapdata, {
+      style: (feature) => {
+        return {
+          fillColor: 'black',
+          weight: 1,
+          color: 'black',
+          fillOpacity: 0.9
+        }
+      }
+    });
+    dataLayer.addTo(res_map);
+    
+
+  </script>
+</body>
+</html>
+
+
