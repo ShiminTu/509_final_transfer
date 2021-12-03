@@ -107,6 +107,10 @@
     });
     dataLayer.addTo(res_map);
     
+    dataLayer.bindPopup(function (layer) {
+      return L.Util.template('{store_name}', layer.feature.properties);
+    });
+    
 
   </script>
 </body>

@@ -42,7 +42,7 @@ def main():
     # Save the rendered output to a file in the "output" folder.
     with open(output_root / 'index2.html', mode='w') as outfile:
         outfile.write(output)
-
+    
 if __name__ == '__main__':
     main()
 
