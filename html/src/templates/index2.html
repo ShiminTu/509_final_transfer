@@ -67,11 +67,7 @@
     */
     var initialCenter = [41.854, -87.673];  // <-- Latitude, Longitude
     var initialZoom = 11;
-    var res_map = L.map('res_map', {
-      zoomSnap: 0,
-      zoomDelta: 0.25
-    }).setView(initialCenter, initialZoom);
-
+    
     var baseLayer = new L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}', {
     	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     	subdomains: 'abcd',
@@ -79,7 +75,6 @@
     	maxZoom: 20,
     	ext: 'png'
     });
-    baseLayer.addTo(res_map);
 
     var neigh_mapdata = {{ neigh_mapdata }};
     var neighLayer = L.geoJSON(neigh_mapdata, {
@@ -92,7 +87,6 @@
         }
       }
     });
-    neighLayer.addTo(res_map);
 
     var res_mapdata = {{ res_mapdata }};
     var dataLayer = L.geoJSON(res_mapdata, {
@@ -104,13 +98,26 @@
           fillOpacity: 0.9
         }
       }
-    });
-    dataLayer.addTo(res_map);
+    }).bindPopup(function (layer) {
+        return L.Util.template('{store_name}', layer.feature.properties);
+      });
+
+    var res_map = L.map('res_map', {
+        zoomSnap: 0,
+        zoomDelta: 0.25,
+        layers: [baseLayer, dataLayer]
+      }).setView(initialCenter, initialZoom);
     
-    dataLayer.bindPopup(function (layer) {
-      return L.Util.template('{store_name}', layer.feature.properties);
-    });
+    var baseMaps = {
+        "Stamen": baseLayer
+    };
     
+    var overlayMaps = {
+        "Groceries": dataLayer,
+        "Neighborhood": neighLayer
+    };
+    
+    L.control.layers(baseMaps, overlayMaps).addTo(res_map);
 
   </script>
 </body>
