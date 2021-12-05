@@ -19,6 +19,7 @@ def main():
     run_transform_gbq('justtest', 'nhoods_detail', sql_root)
     run_transform_gbq('justtest', 'max_crime', sql_root)
     run_transform_gbq('justtest', 'min_crime', sql_root)
+    run_transform_gbq('justtest', 'count_crimes_oct', sql_root)
 
 if __name__ == '__main__':
     main()
